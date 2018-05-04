@@ -15,7 +15,7 @@ function counter(state = 0, action) {
 
 // the store that holds the state
 // the state _must_ be a plain js object
-let store = createStore(counter)
+const store = createStore(counter)
 
 // action dispatchers
 // the object { type: 'INCREMENT' } is the action, here
@@ -34,3 +34,6 @@ console.log(store.getState())
 function increment() {
   return { type: 'INCREMENT' }
 }
+
+store.dispatch(increment())
+console.log(store.getState())

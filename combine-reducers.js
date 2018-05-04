@@ -45,13 +45,10 @@ function byId(state = {}, action) {
         [action.todo.id]: action.todo,
       }
 
-    case 'REMOVE_TODO':
-      return Object.keys(state)
-        .filter(key => key !== action.id)
-        .reduce((acc, key) => ({
-          ...acc,
-          [key]: state[key],
-        }), {})
+    case 'REMOVE_TODO': {
+      const { [action.id]: blackHole, ...everythingElse } = state
+      return everythingElse
+    }
 
     default:
       return state
@@ -67,6 +64,7 @@ const todos = combineReducers({
 })
 // todos is just as much a pure function as allIds and byId are
 // it also shares the same (state, action) => (newstate) signature
+
 console.log(todos, allIds, byId)
 
 // usage

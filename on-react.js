@@ -1,7 +1,7 @@
 // I didn't really run this code, so consider it a kinda pseudo-js
 //  in the sense that I've run no tests here whatsoever
 
-import React, { Component } from 'react'
+import React from 'react'
 import { createStore } from 'redux'
 import { Provider, connect } from 'react-redux'
 
@@ -36,7 +36,7 @@ const MyChildComponent = () => (
 //  an object that will be merged with the child component's props
 function mapStateToProps(state) {
   return {
-    name: getName(state)
+    name: getName(state),
   }
 }
 
@@ -55,7 +55,7 @@ const MyGrandsonComponent = connect(mapStateToProps)(({ name, dispatch }) => (
 
 // name.js (reducer)
 function name(state = '', action) {
-  switch(action.type) {
+  switch (action.type) {
     case 'EDIT_NAME':
       return action.name
 
@@ -71,5 +71,5 @@ function getName(state) {
     return `${state[0].toUpperCase()}${state.slice(1)}`
   }
 
-  return "Unknown"
+  return 'Unknown'
 }

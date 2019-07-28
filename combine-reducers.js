@@ -22,7 +22,7 @@
 // It also returns what's relevant for the allIds key, which means it is oblivious to
 // what happens inside `byId`
 function allIds(state = [], action) {
-  switch(action.type) {
+  switch (action.type) {
     case 'ADD_TODO':
       return [...state, action.todo.id]
 
@@ -37,7 +37,7 @@ function allIds(state = [], action) {
 // todos/byId.js
 // The same thing applies to byId, it only cares about what is under the `byId` of our state
 function byId(state = {}, action) {
-  switch(action.type) {
+  switch (action.type) {
     case 'ADD_TODO':
     case 'EDIT_TODO':
       return {
@@ -81,7 +81,7 @@ function addTodo(todo) {
 const addFirstTodo = addTodo({
   id: '0',
   name: 'first',
-  value: 'Make my presentation'
+  value: 'Make my presentation',
 })
 
 // running the reducer with an empty state should never break
@@ -93,11 +93,14 @@ console.log(state.allIds)
 
 // this is the base on how redux works
 // it feeds the state into the reducer, generating the new version of the state
-state = todos(state, addTodo({
-  id: '1',
-  name: 'second',
-  value: 'Blow their minds',
-}))
+state = todos(
+  state,
+  addTodo({
+    id: '1',
+    name: 'second',
+    value: 'Blow their minds',
+  }),
+)
 
 console.log(state.byId)
 console.log(state.allIds)
